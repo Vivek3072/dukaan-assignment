@@ -1,4 +1,4 @@
-import transactionsData from "./transactions.json";
+import transactionsData from "../data/transactions.json";
 import * as React from "react";
 import { useTable, usePagination } from "react-table";
 import {
@@ -51,6 +51,14 @@ function TransactionTable() {
     { columns, data, initialState: { pageIndex: 0, pageSize: 20 } },
     usePagination
   );
+
+  const pagesToShow = 10;
+  const currentPages = Math.min(pagesToShow, pageOptions.length);
+  const startPage = Math.min(
+    Math.max(0, pageIndex - Math.floor(currentPages / 2)),
+    pageOptions.length - currentPages
+  );
+  const visiblePages = pageOptions.slice(startPage, startPage + currentPages);
 
   return (
     <div>
@@ -120,18 +128,49 @@ function TransactionTable() {
         </button>
 
         <div>
-          {pageOptions.map((page, index) => (
+          {pageIndex > 0 && (
             <button
-              key={index}
-              onClick={() => gotoPage(index)}
+              onClick={() => gotoPage(0)}
               className={`${
-                pageIndex === index ? "bg-primary text-white" : "text-black"
+                pageIndex === 0 ? "bg-primary text-white" : "text-black"
               } px-[10px] py-1 text-[14px] rounded`}
             >
-              {index + 1}
+              1
+            </button>
+          )}
+
+          {pageIndex > pagesToShow / 2 && <span className="mx-2">...</span>}
+
+          {visiblePages.map((page, index) => (
+            <button
+              key={index}
+              onClick={() => gotoPage(page)}
+              className={`${
+                pageIndex === page ? "bg-primary text-white" : "text-black"
+              } px-[10px] py-1 text-[14px] rounded`}
+            >
+              {page + 1}
             </button>
           ))}
+
+          {pageIndex < pageOptions.length - pagesToShow / 2 && (
+            <span className="mx-2">...</span>
+          )}
+
+          {pageIndex < pageOptions.length - 1 && (
+            <button
+              onClick={() => gotoPage(pageOptions.length - 1)}
+              className={`${
+                pageIndex === pageOptions.length - 1
+                  ? "bg-primary text-white"
+                  : "text-black"
+              } px-[10px] py-1 text-[14px] rounded`}
+            >
+              {pageOptions.length}
+            </button>
+          )}
         </div>
+
         <button
           className="bg-white rounded px-[12px] py-[6px] border-black/60 text-black/30 border cursor-pointer flex flex-row items-center ml-2"
           onClick={nextPage}
