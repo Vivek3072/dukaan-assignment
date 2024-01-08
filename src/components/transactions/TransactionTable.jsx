@@ -70,7 +70,7 @@ function TransactionTable() {
                 <th
                   key={idx}
                   {...column.getHeaderProps()}
-                  className="text-left"
+                  className="text-left font-normal"
                 >
                   <div
                     className={`flex flex-row items-center ${
