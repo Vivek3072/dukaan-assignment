@@ -31,15 +31,15 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="bg-secondary h-screen">
-      <div className="flex flex-row justify-between items-center mb-4 p-2">
+    <div className="bg-secondary h-screen px-1 py-2 gap-[24px]">
+      <div className="flex flex-row justify-between items-center px-[12px] py-1 mb-[24px]">
         <div className="flex flex-row items-center gap-[12px]">
           <img src={Nishyan} alt="Nishyan" className="w-[40px] h-[40px]" />
           <div className=" text-white">
             <div className="text-[15px]">Nishyan</div>
             <a
               href="/"
-              className="m-0 p-0 text-[13px] text-opacity-[80%] underline"
+              className="m-0 p-0 text-[13px] text-gray-200 text-opacity-[80%] underline"
             >
               Visit Store
             </a>
@@ -50,13 +50,15 @@ export default function Sidebar() {
         </div>
       </div>
       {/* ________ */}
-      <ul className="flex flex-col my-[4px]">
+      <ul className="flex flex-col">
         {items?.map((item, idx) => (
           <li
             key={idx}
             className={`${
-              item.title === "Payments" && "bg-white bg-opacity-10"
-            } flex flex-row items-center text-gray-50 my-1 px-[16px] py-[8px] hover:bg-white hover:bg-opacity-20 mx-2 rounded`}
+              item.title === "Payments"
+                ? "bg-white bg-opacity-10 text-white"
+                : "text-[#D2D4D9]"
+            } flex flex-row items-center my-1 px-[16px] py-[8px] hover:bg-white hover:bg-opacity-20 rounded`}
           >
             <div className="mr-1 text-[20px]">{item.icon}</div>
             <div className="text-[14px]">{item.title}</div>
@@ -64,7 +66,7 @@ export default function Sidebar() {
         ))}
       </ul>
 
-      <div className="mt-auto bg-[#353C53] mx-2 rounded p-2 flex flex-row items-center absolute bottom-2">
+      <div className="bg-[#353C53] mx-2 rounded p-2 flex flex-row items-center absolute bottom-2 left-1">
         <div className="h-full rounded bg-white bg-opacity-10 p-1 mr-1">
           <CiWallet className="text-[30px] font-medium" color="white" />
         </div>
