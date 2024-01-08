@@ -119,9 +119,11 @@ function TransactionTable() {
 
       <div className="w-full flex flex-row justify-center items-center pagination my-[24px]">
         <button
-          className="bg-white rounded px-[12px] py-[6px] border-black/60 text-black/30 border cursor-pointer flex flex-row items-center mr-2"
+          className={`${
+            !canPreviousPage && "text-gray-300 border-gray-300"
+          } bg-white rounded px-[12px] py-[6px] border-black/60 text-black/30 border flex flex-row items-center mr-2`}
           onClick={previousPage}
-          disabled={!canPreviousPage}
+          disabled={pageIndex === 0}
         >
           <IoIosArrowBack />
           Previous
@@ -148,7 +150,9 @@ function TransactionTable() {
         </div>
 
         <button
-          className="bg-white rounded px-[12px] py-[6px] border-black/60 text-black/30 border cursor-pointer flex flex-row items-center ml-2"
+          className={`${
+            !canNextPage && "text-gray-300 border-gray-300"
+          } bg-white rounded px-[12px] py-[6px] border-black/60 text-black/30 border flex flex-row items-center ml-2`}
           onClick={nextPage}
           disabled={!canNextPage}
         >
