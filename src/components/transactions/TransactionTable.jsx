@@ -128,17 +128,6 @@ function TransactionTable() {
         </button>
 
         <div>
-          {pageIndex > 0 && (
-            <button
-              onClick={() => gotoPage(0)}
-              className={`${
-                pageIndex === 0 ? "bg-primary text-white" : "text-black"
-              } px-[10px] py-1 text-[14px] rounded`}
-            >
-              1
-            </button>
-          )}
-
           {pageIndex > pagesToShow / 2 && <span className="mx-2">...</span>}
 
           {visiblePages.map((page, index) => (
@@ -155,19 +144,6 @@ function TransactionTable() {
 
           {pageIndex < pageOptions.length - pagesToShow / 2 && (
             <span className="mx-2">...</span>
-          )}
-
-          {pageIndex < pageOptions.length - 1 && (
-            <button
-              onClick={() => gotoPage(pageOptions.length - 1)}
-              className={`${
-                pageIndex === pageOptions.length - 1
-                  ? "bg-primary text-white"
-                  : "text-black"
-              } px-[10px] py-1 text-[14px] rounded`}
-            >
-              {pageOptions.length}
-            </button>
           )}
         </div>
 
