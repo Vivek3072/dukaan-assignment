@@ -1,3 +1,5 @@
+import { IoIosArrowDown } from "react-icons/io";
+
 export default function Overview() {
   const overview = [
     { title: "Online orders", data: "231" },
@@ -5,7 +7,13 @@ export default function Overview() {
   ];
   return (
     <>
-      <div className="text-[20px] my-5 font-medium">Overview</div>
+      <div className="flex flex-row justify-between items-center my-5 ">
+        <div className="text-[20px] font-medium">Overview</div>
+        <div className="bg-white text-[16px] text-black/30 border border-[#D9D9D9] h-fit rounded px-3 py-1 flex flex-row items-center">
+          Last Month
+          <IoIosArrowDown className="ml-1" size={20} />
+        </div>
+      </div>
       <div className="grid grid-cols-2 gap-[20px]">
         {overview?.map((data, idx) => {
           return (
